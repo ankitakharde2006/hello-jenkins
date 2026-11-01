@@ -1,4 +1,4 @@
-def run(cmd) (if (isUnix) (sh cmd) else (bat cmd))
+def run(cmd) {if (isUnix) {sh cmd} else {bat cmd}}
 
 def awsRun(cmd) (
   withCredentials([ 
