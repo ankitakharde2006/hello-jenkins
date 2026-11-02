@@ -12,6 +12,7 @@ pipeline {
   stages {
     stage('Build') { steps { script { run "docker build -t ${IMG} ." } } }
     stage('Test') { steps { script { run "docker run --rm ${IMG} nginx -t" } } }
+    stage('AWS Check') { steps { script { awsRun "aws sts get-caller-identity" } } }
     stage('Push') { steps { script {
       ecrLogin()
       run "docker tag ${IMG} ${REMOTE}"
